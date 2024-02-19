@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:weather_api_learning_3/Model/provider.dart';
 import 'package:weather_api_learning_3/View/screenhome.dart';
 
 void main() {
@@ -12,8 +13,23 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MultiProvider(providers: [
-    ],
+    return
+        // MultiProvider(providers: [
+        // ],
+        // child:
+        MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: (context) {
+            return LocationProvider();
+          },
+        ),
+        ChangeNotifierProvider(
+          create: (context) {
+            return UserController();
+          },
+        )
+      ],
       child: MaterialApp(
           debugShowCheckedModeBanner: false,
           title: 'Flutter Demo',
@@ -31,5 +47,6 @@ class MyApp extends StatelessWidget {
           ),
           home: ScreenHome()),
     );
+    //  );
   }
 }
