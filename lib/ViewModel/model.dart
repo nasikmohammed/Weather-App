@@ -16,10 +16,8 @@ class UserModel {
   factory UserModel.fromjson(Map<String, dynamic> json) {
     return UserModel(
       lon: json["coord"]["lon"],
-      //  pm10: json["list"][0]["components"]["pm10"]);
       wetherContition: json["weather"][0]["main"],
       temp: json["main"]["temp_max"],
-
       name: json["name"],
       sunrise: json["sys"]["sunrise"],
       sunset: json["sys"]["sunset"],

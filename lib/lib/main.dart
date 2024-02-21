@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:weather_api_learning_3/Model/provider.dart';
+import 'package:weather_api_learning_3/ViewModel/provider.dart';
 import 'package:weather_api_learning_3/View/screenhome.dart';
 
 void main() {

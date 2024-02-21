@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:weather_api_learning_3/Model/provider.dart';
+import 'package:weather_api_learning_3/ViewModel/provider.dart';
 import 'package:weather_api_learning_3/View/screenhome.dart';
+
+import 'ViewModel/usercontroller.dart';
 
 void main() {
   runApp(const MyApp());
@@ -19,12 +21,12 @@ class MyApp extends StatelessWidget {
         // child:
         MultiProvider(
       providers: [
-        ChangeNotifierProvider(
+        ChangeNotifierProvider<LocationProvider>(
           create: (context) {
             return LocationProvider();
           },
         ),
-        ChangeNotifierProvider(
+        ChangeNotifierProvider<UserController>(
           create: (context) {
             return UserController();
           },
