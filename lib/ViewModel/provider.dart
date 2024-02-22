@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
@@ -41,16 +39,16 @@ class LocationProvider with ChangeNotifier {
 
     String? data = await geocodingg(currentPostion!);
     print(data);
-    print("Fdddddddddddddddddddddddddddddddddddd");
+    
     return data;
-  }
+     }
 
   String? placee;
-  Future<String?> geocodingg(Position position) async {
+  Future<String?> geocodingg(Position position,) async {
     await placemarkFromCoordinates(position.latitude, position.longitude)
         .then((value) {
       placemark = value[0];
-      placee = placemark.country;
+      placee = placemark.locality;
     });
     return placee;
   }
