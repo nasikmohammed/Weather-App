@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:weather_api_learning_3/View/screenhome.dart';
+import 'package:weather_api_learning_3/ViewModel/Location.dart';
 
 class LocationProvider with ChangeNotifier {
   double? lat;
@@ -32,19 +33,24 @@ class LocationProvider with ChangeNotifier {
 
   Future<String?> getCurrentLocatiion() async {
     currentPostion = await determinePosition();
+
     lat = currentPostion!.latitude;
     lon = currentPostion!.longitude;
     print(currentPostion);
-    print(lat);
 
     String? data = await geocodingg(currentPostion!);
     print(data);
-    
+    currentlocPro loc = currentlocPro();
+
+    loc.getCurentLocweather(lat, lon);
+
     return data;
-     }
+  }
 
   String? placee;
-  Future<String?> geocodingg(Position position,) async {
+  Future<String?> geocodingg(
+    Position position,
+  ) async {
     await placemarkFromCoordinates(position.latitude, position.longitude)
         .then((value) {
       placemark = value[0];
