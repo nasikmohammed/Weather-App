@@ -11,7 +11,7 @@ class UserController extends ChangeNotifier {
   String textfieldvalue = "";
   Future fetchData() async {
     final response = await http.get(Uri.parse(
-        'https://api.openweathermap.org/data/2.5/weather?q=$textfieldvalue&appid=729f0d2fa1807af056b91a8de3045da4'
+        'https://api.openweathermap.org/data/2.5/weather?q=$textfieldvalue&appid=729f0d2fa1807af056b91a8de3045da4&units=imperial'
         // 'https://api.openweathermap.org/data/2.5/weather?lat=$lat&lon=$lon&appid=729f0d2fa1807af056b91a8de3045da4&units=metric'
         ));
 

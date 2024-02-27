@@ -28,11 +28,7 @@ class MyApp extends StatelessWidget {
             return UserController();
           },
         ),
-        ChangeNotifierProvider<currentlocPro>(
-          create: (context) {
-            return currentlocPro();
-          },
-        ),
+       
       ],
       child: MaterialApp(
           debugShowCheckedModeBanner: false,
