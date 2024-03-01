@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:geocoding/geocoding.dart';
 import 'package:google_fonts/google_fonts.dart';
-
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:weather_api_learning_3/Model/model.dart';
@@ -11,7 +9,7 @@ import 'package:weather_api_learning_3/ViewModel/usercontroller.dart';
 UserModel? obj;
 
 class ScreenHome extends StatefulWidget {
-  ScreenHome({super.key});
+  const ScreenHome({super.key});
 
   @override
   State<ScreenHome> createState() => _ScreenHomeState();
@@ -19,7 +17,6 @@ class ScreenHome extends StatefulWidget {
 
 class _ScreenHomeState extends State<ScreenHome> {
   DateTime now = DateTime.now();
-
   String weatherwall = "assets/stock-photo-147213089.jpg";
 
   @override
@@ -46,64 +43,60 @@ class _ScreenHomeState extends State<ScreenHome> {
             children: [
               Padding(
                 padding: const EdgeInsets.only(top: 70, left: 10),
-                child: Container(
+                child: SizedBox(
                   height: 50,
                   child: Row(
                     children: [
-                      Container(
-                        child: Padding(
-                          padding: const EdgeInsets.only(left: 30),
-                          child: Row(
-                            children: [
-                              const Icon(
-                                Icons.location_on,
-                                color: Colors.red,
-                              ),
-                              const SizedBox(
-                                width: 10,
-                              ),
-                              Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  FutureBuilder(
-                                      future: provider.getCurrentLocatiion(),
-                                      builder: (context, snap) {
-                                        Provider.of<UserController>(context)
-                                            .fetchData();
-                                        if (snap.connectionState ==
-                                            ConnectionState.waiting) {
-                                          return const Center(
-                                            child: CircularProgressIndicator(),
-                                          );
-                                        }
+                      Padding(
+                        padding: const EdgeInsets.only(left: 30),
+                        child: Row(
+                          children: [
+                            const Icon(
+                              Icons.location_on,
+                              color: Colors.red,
+                            ),
+                            const SizedBox(
+                              width: 10,
+                            ),
+                            Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                FutureBuilder(
+                                    future: provider.getCurrentLocatiion(),
+                                    builder: (context, snap) {
+                                      Provider.of<UserController>(context)
+                                          .fetchData();
+                                      if (snap.connectionState ==
+                                          ConnectionState.waiting) {
+                                        return const Center(
+                                          child: CircularProgressIndicator(),
+                                        );
+                                      }
 
-                                        return obj?.name == null
-                                            ? Text(
-                                                "${snap.data}",
-
-                                                //    "${locc.placee}",
-                                                style: GoogleFonts.caveat(
-                                                    fontSize: 25,
-                                                    fontWeight: FontWeight.bold,
-                                                    color: Color.fromARGB(
-                                                        255, 0, 0, 0)),
-                                              )
-                                            : Text(
-                                                "${obj?.name}",
-                                                style: GoogleFonts.caveat(
-                                                    fontSize: 25,
-                                                    fontWeight: FontWeight.bold,
-                                                    color: Color.fromARGB(
-                                                        255, 0, 0, 0)),
-                                              );
-                                      })
-                                ],
-                              ),
-                              const SizedBox(
-                                width: 10,
-                              ),
-                            ],
-                          ),
+                                      return obj?.name == null
+                                          ? Text(
+                                              "${snap.data}",
+                                              style: GoogleFonts.caveat(
+                                                  fontSize: 25,
+                                                  fontWeight: FontWeight.bold,
+                                                  color: const Color.fromARGB(
+                                                      255, 0, 0, 0)),
+                                            )
+                                          : Text(
+                                              "${obj?.name}",
+                                              style: GoogleFonts.caveat(
+                                                  fontSize: 25,
+                                                  fontWeight: FontWeight.bold,
+                                                  color: const Color.fromARGB(
+                                                      255, 0, 0, 0)),
+                                            );
+                                    })
+                              ],
+                            ),
+                            const SizedBox(
+                              width: 10,
+                            ),
+                          ],
                         ),
                       )
                     ],
@@ -120,10 +113,10 @@ class _ScreenHomeState extends State<ScreenHome> {
                         right: 20,
                         top: 20,
                       ),
-                      child: Container(
+                      child: SizedBox(
                         height: 50,
                         child: TextFormField(
-                          cursorColor: Color.fromARGB(255, 0, 0, 0),
+                          cursorColor: const Color.fromARGB(255, 0, 0, 0),
                           decoration: InputDecoration(
                               hintText: "Enter Location...",
                               border: OutlineInputBorder(
@@ -138,7 +131,7 @@ class _ScreenHomeState extends State<ScreenHome> {
                       child: Text("Check Weather",
                           style: GoogleFonts.caveat(
                               fontSize: 15,
-                              color: Color.fromARGB(255, 255, 255, 255))),
+                              color: const Color.fromARGB(255, 255, 255, 255))),
                       onPressed: () {
                         setState(() {
                           providder.textfieldvalue = controller.text;
@@ -164,8 +157,7 @@ class _ScreenHomeState extends State<ScreenHome> {
                   ],
                 ),
               ),
-
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               Padding(
@@ -176,7 +168,7 @@ class _ScreenHomeState extends State<ScreenHome> {
                       children: [
                         Row(
                           children: [
-                            SizedBox(
+                            const SizedBox(
                               width: 5,
                             ),
                             const Icon(
@@ -189,17 +181,17 @@ class _ScreenHomeState extends State<ScreenHome> {
                                 Text("TempMax",
                                     style: GoogleFonts.bungee(
                                         fontWeight: FontWeight.bold,
-                                        color: Color.fromARGB(
+                                        color: const Color.fromARGB(
                                             255, 220, 121, 121))),
                                 obj?.temp == null
                                     ? Text(
                                         "${locc.locationmoddel?.tempmax ?? "Loading..."}",
                                         style: GoogleFonts.caveat(
-                                            color: Color.fromARGB(
+                                            color: const Color.fromARGB(
                                                 255, 255, 255, 255)))
                                     : Text("${obj?.temp}",
                                         style: GoogleFonts.caveat(
-                                            color: Color.fromARGB(
+                                            color: const Color.fromARGB(
                                                 255, 255, 255, 255))),
                               ],
                             ),
@@ -220,23 +212,17 @@ class _ScreenHomeState extends State<ScreenHome> {
                                 Text("Temp Min",
                                     style: GoogleFonts.bungee(
                                         fontWeight: FontWeight.bold,
-                                        color: Color.fromARGB(
+                                        color: const Color.fromARGB(
                                             255, 220, 121, 121))),
                                 obj?.temp == null
                                     ? Text(
                                         "${locc.locationmoddel?.tempmax ?? "Loading..."}",
                                         style: GoogleFonts.caveat(
-                                            color: Color.fromARGB(
+                                            color: const Color.fromARGB(
                                                 255, 255, 255, 255)))
-                                    : Text(
-                                        //How to print model value/s in screenHome
-                                        //1)create object of model in screenHome
-                                        // 2)to display>>>obj.name
-                                        //  "${obj?.wetherContition}",
-
-                                        "${obj?.temp}",
+                                    : Text("${obj?.temp}",
                                         style: GoogleFonts.caveat(
-                                            color: Color.fromARGB(
+                                            color: const Color.fromARGB(
                                                 255, 255, 255, 255)))
                               ],
                             ),
@@ -244,7 +230,7 @@ class _ScreenHomeState extends State<ScreenHome> {
                         ),
                       ],
                     ),
-                    Divider(
+                    const Divider(
                       endIndent: 20,
                       color: Colors.white,
                     ),
@@ -262,23 +248,17 @@ class _ScreenHomeState extends State<ScreenHome> {
                                 Text("Sunrise",
                                     style: GoogleFonts.bungee(
                                         fontWeight: FontWeight.bold,
-                                        color: Color.fromARGB(
+                                        color: const Color.fromARGB(
                                             255, 220, 121, 121))),
                                 obj?.temp == null
                                     ? Text(
                                         "${locc.locationmoddel?.sunrise ?? "Loading..."}",
                                         style: GoogleFonts.caveat(
-                                            color: Color.fromARGB(
+                                            color: const Color.fromARGB(
                                                 255, 255, 255, 255)))
-                                    : Text(
-                                        //How to print model value/s in screenHome
-                                        //1)create object of model in screenHome
-                                        // 2)to display>>>obj.name
-                                        //  "${obj?.wetherContition}",
-
-                                        "${obj?.sunrise}",
+                                    : Text("${obj?.sunrise}",
                                         style: GoogleFonts.caveat(
-                                            color: Color.fromARGB(
+                                            color: const Color.fromARGB(
                                                 255, 255, 255, 255)))
                               ],
                             ),
@@ -297,20 +277,15 @@ class _ScreenHomeState extends State<ScreenHome> {
                             Text("Sunset",
                                 style: GoogleFonts.bungee(
                                     fontWeight: FontWeight.bold,
-                                    color: Color.fromARGB(255, 220, 121, 121))),
+                                    color: const Color.fromARGB(
+                                        255, 220, 121, 121))),
                             obj?.temp == null
                                 ? Text(
                                     "${locc.locationmoddel?.sunset ?? 'Loading...'}",
                                     style: GoogleFonts.caveat(
-                                        color:
-                                            Color.fromARGB(255, 255, 255, 255)))
-                                : Text(
-                                    //How to print model value/s in screenHome
-                                    //1)create object of model in screenHome
-                                    // 2)to display>>>obj.name
-                                    //  "${obj?.wetherContition}",
-
-                                    "${obj?.sunset}",
+                                        color: const Color.fromARGB(
+                                            255, 255, 255, 255)))
+                                : Text("${obj?.sunset}",
                                     style: GoogleFonts.caveat(
                                         color:
                                             Color.fromARGB(255, 255, 255, 255)))
@@ -321,21 +296,6 @@ class _ScreenHomeState extends State<ScreenHome> {
                   ],
                 ),
               ),
-
-              // Padding(
-              //   padding: const EdgeInsets.only(top: 700, left: 200),
-              //   child: GestureDetector(
-              //     onTap: () async {
-              //       final codinates = Coordinates(10.9778891, 76.2025966);
-              //       var address = await Geocoder.local
-              //           .findAddressesFromCoordinates(codinates);
-              //       var first = address.first;
-
-              //       print(first.featureName.toString());
-              //     },
-              //     child: Text("hi"),
-              //   ),
-              // ),
             ],
           ),
         );
@@ -343,6 +303,3 @@ class _ScreenHomeState extends State<ScreenHome> {
     )));
   }
 }
-//
-
-//http://api.openweathermap.org/data/2.5/air_pollution?lat=11.2588&lon=75.7804&appid=729f0d2fa1807af056b91a8de3045da4
